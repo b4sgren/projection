@@ -8,7 +8,7 @@
 
 #include "utils.h"
 
-namespace rigidTransform {
+namespace projection {
 
 template<typename T>
 class Quaternion {
