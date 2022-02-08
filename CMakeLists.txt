@@ -18,6 +18,5 @@ add_subdirectory(src)
 # endif()
 
 if (BUILD_TESTS)
-    message("HERE")
     add_subdirectory(tests)
 endif()
