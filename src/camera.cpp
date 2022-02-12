@@ -1,7 +1,6 @@
 #include "camera.hpp"
 
 namespace projection {
-
 Camera::Camera() : focal_length_{.015}, pixel_width_{1e-5},
                    pixel_height_{1e-5}, width_{1280}, height_{1024},
                    center_x_{640}, center_y_{512},
@@ -33,6 +32,27 @@ Camera::Camera(double f, double ph, double pw, double w, double h, double u,
           0, focal_length_/pixel_height_, center_y_,
           0, 0, 1;
 }
+
+
+// static Camera Camera::calibrate(const StlVec2d &pix, const StlVec3d &pts) {
+//     // Eigen::MatrixXd A = Eigen::MatrixXd(2*pix.size(), 11)::Zero();
+//     // Eigen::VectorXd b = Eigen::VectorXd(2*pix.size());
+//     // for (int i{0}; i != pix.size(); ++i) {
+//     //     A.block(1, 3, 2*i, 0) = pts[i].transpose();
+//     //     A(2*i, 3) = 1;
+//     //     A.block(1, 3, 2*i, 8) = -pix[i](0) * pts[i].transpose();
+
+//     //     A.block(1, 3, 2*i+1, 4) = pts[i].transpose();
+//     //     A(2*i, 7) = 1;
+//     //     A.block(1, 3, 2*i+1, 8) = -pix[i](1) * pts[i].transpose();
+
+//     //     b.block(2*i, 2) = pix[i];
+//     // }
+
+//     // Eigen::VectorXd x = A.colPivHouseholderQR().solve(b);
+
+//     return Camera();
+// }
 
 Eigen::Vector2i Camera::project(const Eigen::Ref<Eigen::Vector3d> &pt) {
     SE3d T_world_from_camera = SE3d::Identity();

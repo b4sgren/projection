@@ -2,20 +2,35 @@
 #define PROJECTION_CAMERA_HPP_
 
 #include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/StdVector>
+
+#include <vector>
+
 // TODO: Find a way to use rigidTransform library
 #include "se3.h"
+
+namespace rt = rigidTransform;
 
 namespace projection {
 
 class Camera {
-    using SE3d = SE3<double>;
+    using SE3d = rt::SE3<double>;
     using Vector5d = Eigen::Matrix<double, 5, 1>;
+    using StlVec2d = std::vector<Eigen::Vector2d,
+                                 Eigen::aligned_allocator<Eigen::Vector2d>>;
+    using StlVec3d = std::vector<Eigen::Vector3d,
+                                 Eigen::aligned_allocator<Eigen::Vector3d>>;
+
+
  public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     Camera();
     Camera(double f, double ph, double pw, double w, double h, double u,
            double v);
     Camera(double f, double ph, double pw, double w, double h, double u,
            double v, const Vector5d &dist);
+
+    // static Camera calibrate(const StlVec2d &pix, const StlVec3d &pts);
 
 
     inline Eigen::Matrix3d K() const { return K_; }

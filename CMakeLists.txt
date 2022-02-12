@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED 1)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-option(BUILD_TESTS OFF CACHE)
+option(BUILD_TEST ON CACHE)
 option(BUILD_EXAMPLES ON CACHE)
 
 find_package(Eigen3 REQUIRED NO_MODULE)
@@ -17,6 +17,6 @@ add_subdirectory(src)
 #     add_subdirectory(examples)
 # endif()
 
-if (BUILD_TESTS)
+if (BUILD_TEST)
     add_subdirectory(tests)
 endif()

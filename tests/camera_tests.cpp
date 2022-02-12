@@ -5,14 +5,16 @@
 
 #include <iostream>
 
+namespace rt = rigidTransform;
+
 TEST(DUMMY, dummy) {
     EXPECT_TRUE(true);
 }
 
 TEST(Projection, ProjectFeature) {
     projection::Camera camera;
-    projection::SE3<double> T_world_from_camera =
-        projection::SE3<double>::Identity();
+    rt::SE3<double> T_world_from_camera =
+        rt::SE3<double>::Identity();
     Eigen::Vector3d pt;
     pt << 0.3, 0.4, 3.0;
 
@@ -25,8 +27,8 @@ TEST(Projection, ProjectFeature) {
 TEST(Projection, ProjectFeatureNotAtOrigin) {
     projection::Camera camera;
     Eigen::Vector3d pos(-1, 0, 0.5);
-    projection::SE3<double> T_world_from_camera =
-        projection::SE3<double>(0, 0.9, 0.0, pos);
+    rt::SE3<double> T_world_from_camera =
+        rt::SE3<double>(0, 0.9, 0.0, pos);
     Eigen::Vector3d pt;
     pt << -.1, -.1, 1.0;
 
